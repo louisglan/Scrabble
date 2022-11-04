@@ -26,10 +26,13 @@ class Tile {
   }
 }
 
-console.log(new Tile("X").points);
-
 export function createAllTiles() {
   const allTiles = [];
 }
 
-export function calculateScore(word) {}
+export function calculateScore(word) {
+  return word.reduce((cum, letter) => {
+    const value = Number(letter.points);
+    return cum + value;
+  }, 0);
+}
