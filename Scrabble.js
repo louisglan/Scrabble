@@ -1,6 +1,6 @@
 // Plan: first create a tile class. This will have letter and points keys.
 // Create a function that uses this class to create each tile, then create duplicates of tiles that have duplicates
-//
+import shuffle from "./shuffle.js";
 
 class Tile {
   constructor(letter) {
@@ -57,8 +57,11 @@ export function calculateScore(word) {
   }, 0);
 }
 
+export function createHand() {}
+
 export function main() {
   const allTiles = createAllTiles();
+  const shuffledTiles = shuffle(allTiles);
 }
 
 main();
