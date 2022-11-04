@@ -41,7 +41,6 @@ export function createAllTiles() {
   for (let i = 0; i < Object.keys(numberOfTiles).length; i++) {
     for (let j = 0; j < Number(Object.keys(numberOfTiles)[i]); j++) {
       Object.values(numberOfTiles)[i].forEach((letter) => {
-        console.log(letter);
         const tile = new Tile(letter);
         allTiles.push(tile);
       });
@@ -57,11 +56,19 @@ export function calculateScore(word) {
   }, 0);
 }
 
-export function createHand() {}
+export function createHand(Tiles) {
+  const hand = [];
+  for (let i = 0; i < 7; i++) {
+    hand.push(Tiles.shift());
+  }
+  return hand;
+}
 
 export function main() {
   const allTiles = createAllTiles();
   const shuffledTiles = shuffle(allTiles);
+  const player1Hand = createHand(shuffledTiles);
+  console.log(player1Hand);
 }
 
 main();
