@@ -20,19 +20,45 @@ class Tile {
     };
     for (let i = 0; i < Object.keys(points).length; i++) {
       if (Object.values(points)[i].includes(this.letter)) {
-        return Object.keys(points)[i];
+        return Number(Object.keys(points)[i]);
       }
     }
   }
 }
 
 export function createAllTiles() {
-  const allTiles = [];
+  let allTiles = [];
+  const numberOfTiles = {
+    1: ["K", "J", "X", "Q", "Z"],
+    2: ["B", "C", "M", "P", "F", "H", "V", "W", "Y"],
+    3: ["G"],
+    4: ["L", "S", "U", "D"],
+    6: ["N", "R", "T"],
+    8: ["O"],
+    9: ["A", "I"],
+    12: ["E"],
+  };
+  for (let i = 0; i < Object.keys(numberOfTiles).length; i++) {
+    for (let j = 0; j < Number(Object.keys(numberOfTiles)[i]); j++) {
+      Object.values(numberOfTiles)[i].forEach((letter) => {
+        console.log(letter);
+        const tile = new Tile(letter);
+        allTiles.push(tile);
+      });
+    }
+  }
+  return allTiles;
 }
 
 export function calculateScore(word) {
   return word.reduce((cum, letter) => {
-    const value = Number(letter.points);
+    const value = letter.points;
     return cum + value;
   }, 0);
 }
+
+export function main() {
+  const allTiles = createAllTiles();
+}
+
+main();
