@@ -1,7 +1,7 @@
 // Plan: first create a tile class. This will have letter and points keys.
 // Create a function that uses this class to create each tile, then create duplicates of tiles that have duplicates
 import shuffle from "./shuffle.js";
-const dict = await Deno.readTextFile("./dictionary.txt"); //This isn't working???
+const dict = await Deno.readTextFile("./Scrabble/dictionary.txt"); //This isn't working???
 
 class Tile {
   constructor(letter) {
@@ -69,7 +69,6 @@ export function main() {
   const allTiles = createAllTiles();
   const shuffledTiles = shuffle(allTiles);
   const player1Hand = createHand(shuffledTiles);
-  console.log(dict);
 }
 
 main();
