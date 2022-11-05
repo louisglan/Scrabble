@@ -65,10 +65,44 @@ export function createHand(Tiles) {
   return hand;
 }
 
+export function findValidWord(hand, dict) {
+  const dictArray = dict.split("\n");
+  hand.forEach((tile, el) => {
+    tile.index = el;
+  });
+  filtered_dict = dict.filter((word) => {
+    word.length <= 7;
+  });
+  const twoLetterWords = [];
+  for (let i = 0; i < hand.length; i++) {
+    for (let j = 0; j < hand.length; j++) {
+      if (i != j) {
+        twoLetterWords.push([hand[i], hand[j]]);
+      }
+    }
+  }
+  const threeLetterWords = [];
+  for (let i = 0; i < twoLetterWords.length; i++) {
+    for (let j = 0; j < hand.length; j++) {
+      if (
+        twoLetterWords[i][0].index != hand[j].index &&
+        twoLetterWords[i][1].index != hand[j].index
+      )
+        threeLetterWords.push(twoLetterWords[i].push(hand[j]));
+      threeLetterWords.push(twoLetterWords[i].unshift(hand[j]));
+    }
+  }
+
+  //and so on, then check dictionary for all words
+  return dictArray;
+}
+
 export function main() {
   const allTiles = createAllTiles();
   const shuffledTiles = shuffle(allTiles);
   const player1Hand = createHand(shuffledTiles);
+  const validWord = findValidWord(player1Hand, dict);
+  console.log(validWord);
 }
 
 main();
